@@ -24,7 +24,7 @@ initMsg =  () => {
 	return(tempMsg);
 }
 
-var messages = initMsg();
+var messages = initMsg(); //object that stores the messages for each of the rooms
 
 
 //Just for testing

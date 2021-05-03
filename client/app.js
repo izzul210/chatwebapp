@@ -6,9 +6,13 @@ var profile = {
     username: "Sofia"
 };
 
-//Stores functions to call for different requests to the server
+//Service = stores functions to call for different requests to the server
 var Service = {
-        origin: window.location.origin,
+        origin: window.location.origin, //store URL of the server as a string
+
+        /*getAllRooms: fetch the list of rooms, then render it in the view dynamically
+        - asynchronous function (returned list will be available as the 1st argument in callback pass to)
+        */
         getAllRooms: () => {   
             return new Promise((resolve, reject) => {
                 var xhr = new XMLHttpRequest();
@@ -105,7 +109,7 @@ var Service = {
 };
 
 
-window.addEventListener('load', main);
+window.addEventListener('load', main); //call main function once the page is loaded
 
 function main(){
     lobby = new Lobby();
@@ -126,6 +130,8 @@ function main(){
     });
     chatView = new ChatView(socket);
 
+
+    //refreshLobby = call getAllRooms function to make an AJAX request to the server
     refreshLobby = () => {
         Service.getAllRooms().then(
             (result) => {
@@ -138,6 +144,7 @@ function main(){
                     obj.r = false;
                 }
 
+                //update lobby.rooms object with array of rooms from server
                 for(let i = 0; i < objTemp.length; i++){
                     for(room in lobby.rooms){
                         if(objTemp[i]._id == room){
@@ -160,13 +167,11 @@ function main(){
     }
 
     refreshLobby();
-    // setInterval(refreshLobby, 50000);
-    renderRoute();
-    window.addEventListener('popstate', renderRoute);
+    setInterval(refreshLobby, 50000); //periodically refresh the list of chat rooms
+    renderRoute(); //read the URL from address bar and perform actions
+    window.addEventListener('popstate', renderRoute); //popstate event is fired when URL changes (eg: when back button is clicked)
 
     cpen400a.export(arguments.callee, { refreshLobby, lobby, socket, chatView });
-
-    
 }
 
 
