@@ -5,6 +5,9 @@ var lobby;
 var profile = {
     username: "Sofia"
 };
+
+//Testing #2
+
 //Stores functions to call for different requests to the server
 var Service = {
         origin: window.location.origin,
