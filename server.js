@@ -11,8 +11,6 @@ var db = new Database("mongodb://localhost:27017", "cpen400a-messenger");
 
 var messageBlockSize = 10;
 
-//Testing
-
 //Initialize messages object from db.getRooms
 initMsg =  () => {
 	var tempMsg = {};
