@@ -1,0 +1,271 @@
+body {
+    font-family: 'Work Sans', sans-serif;
+}
+   
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Crimson Text', serif;
+}
+
+#app-view{
+    background: rgba(225, 253, 238, 0.596);
+}
+
+.room-list, .message-list{
+    min-height: 500px;
+}
+
+.content .profile-form{
+    min-height: 500px;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+#app-menu{
+    background: #a1d7f7;
+    display: flex;
+    flex-direction: row;
+    align-content: stretch;
+    justify-content: space-around;
+    list-style: none;
+}
+
+#app-menu a{
+    color: rgb(39, 38, 38);
+    text-decoration: none;
+    width: 100%;
+}
+
+#app-menu div{
+    display: block;
+    text-align: center;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+#app-menu img{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    transform: translateY(20%);
+    
+}
+
+#app-menu p{
+    display: inline-block; 
+    transform: translateY(-10%);
+}
+
+#app-menu .menu-item{
+    width: 100%;
+}
+
+#app-menu .menu-item:hover{
+    background: linear-gradient(rgb(248, 179, 179),rgb(250, 202, 202)) ;
+}
+
+#app-menu .menu-item:hover p{
+    color: white;
+}
+
+/******************** START: MAIN-PAGE *********************/
+#page-view .content li{
+    background: rgba(255, 255, 255, 0.582);
+    margin: 5px 0px 5px 0px;
+    list-style: none;
+}
+
+#page-view .content li:hover{
+    background: linear-gradient(rgb(248, 233, 233),rgb(252, 200, 200)) ;
+    border-radius: 12px;
+}
+
+
+#page-view .page-control{
+    padding: 20px 0px 20px 0px;
+    background: #a1d7f7;
+}
+
+.room-list a{
+    text-decoration: none;
+}
+
+.chat-class{
+    display: flex;
+    justify-content: flex-start;
+}
+
+
+
+.chat-class img{
+    margin: 10px 10px 10px 20px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    box-shadow: 3px 5px 5px rgba(39, 38, 38, 0.164);
+}
+
+.chat-class p{
+    color: black;
+}
+
+.page-control .main-control{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    display: block;
+    text-align: center;
+}
+/******************** END: MAIN-PAGE *********************/
+
+
+/******************** START: CHAT-PAGE *********************/
+h4{
+    margin: 0;
+}
+
+.content h4{
+   padding: 5px 0px 15px 15px;
+}
+
+.message-list{
+    color: white;
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.message-list .message{
+    display:flex;
+}
+
+.message-list .my-message{
+    justify-content: flex-end;
+}
+
+.message-list .message div{
+    background: linear-gradient(rgb(197, 197, 255), rgb(155, 155, 253));
+    margin: 5px 5px 5px 5px;
+    padding: 10px;
+    width: 85%;
+    display: grid;
+    border-radius: 7px;
+    
+
+}
+
+.message-list .my-message div{
+    background: linear-gradient(rgb(240, 161, 161), rgb(252, 109, 109));
+    position: relative;
+}
+
+.message-user{
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+}
+
+.page-control .chat-control{
+    margin: auto;
+    padding: 2px;
+    display: grid;
+    grid-template-columns: 85% 15%;
+    text-align: center;
+}
+
+.chat-control textarea{
+    margin: 0px 10px 0 10px;
+}
+
+.chat-control button{
+    margin: 0px 20px 0 10px;
+}
+/* 
+#page-view .message-list{
+    
+} */
+
+/******************** END: CHAT-PAGE *********************/
+
+/******************** START: PROFILE-PAGE *********************/
+
+
+.page-control .profile-control{
+    text-align: center;
+}
+
+.form-field{
+    margin: 2px;
+    padding: 10px 0px 10px 0px;
+    background: rgb(255, 255, 255);
+    border-radius: 10px;
+    min-height: 35px;
+}
+
+.form-field label{
+    padding-left: 10px;
+}
+
+.form-field input{
+    max-width: 400px;
+}
+
+.form-field textarea{
+    max-width: 400px;
+}
+
+.form-field img{
+    height: 30px;
+    width: 30px;
+    display:inline-block;
+}
+
+.form-field div{
+    display: grid;
+    grid-template-columns: 40px 200px;
+}
+/******************** END: PROFILE-PAGE *********************/
+
+
+
+/***************** INTERACTIVITY ***************************/
+@media (min-width: 1024px ){
+    #app-view{
+        width:80%;
+        margin: auto;
+    }
+
+    .form-field{
+        display: grid;
+        grid-template-columns: 15% 85% !important;
+    }
+}
+
+@media (min-width: 768px ){
+    #app-view{
+        width: 90%;
+        margin: auto;
+    }
+
+    .chat-class p{
+        margin-left: 10px;
+    }
+
+    .form-field{
+        display: grid;
+        grid-template-columns: 15% 85%;
+    }
+}
+
+@media(max-width: 767px){
+    #app-view{
+        width: 100%;
+        margin: auto;
+    }
+
+    .form-field{
+        display: grid;
+        grid-template-columns: 20% 80%;
+    }
+}

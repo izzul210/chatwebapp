@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.3",
+    "ws": "^7.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "project-izzul210",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ubc-cpen400a-2020/project-izzul210.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ubc-cpen400a-2020/project-izzul210/issues"
+  },
+  "homepage": "https://github.com/ubc-cpen400a-2020/project-izzul210#readme",
+  "description": ""
+}
