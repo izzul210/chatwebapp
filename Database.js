@@ -1,13 +1,7 @@
 const { MongoClient, ObjectID } = require('mongodb');	// require the mongodb driver
 
-const uri = "mongodb+srv://izzul023:@Secret123@cluster0.gamtn.mongodb.net/cpen400a-messenger?retryWrites=true&w=majority"
-
-const client = new MongoClient(uri);
-
 /**
  * Uses mongodb v3.6+ - [API Documentation](http://mongodb.github.io/node-mongodb-native/3.6/api/)
- * Database wraps a mongoDB connection to provide a higher-level abstraction layer
- * for manipulating the objects in our cpen400a app.
  */
 function Database(mongoUrl, dbName){
 	if (!(this instanceof Database)) return new Database(mongoUrl, dbName);
@@ -41,6 +35,7 @@ Database.prototype.getRooms = function(){
 			db.collection("chatrooms").find({}).toArray()
 				.then((result) => {
 					resolve(result);
+					console.log(result);
 				})
 				.catch((error) => {
 					reject(error);
@@ -163,9 +158,6 @@ Database.prototype.getLastConversation = function(room_id, before){
 					.catch((err) => {
 						reject(err);
 					})
-
-
-
 
 		})
 	)

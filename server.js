@@ -6,7 +6,10 @@ const Database = require('./Database.js');
 
 var broker = new WebSocket.Server({ port: 8000});
 
-var db = new Database("mongodb://localhost:27017", "cpen400a-messenger");
+// connect to mongodb
+const dbURI = 'mongodb+srv://izzul_chat:secret123@chatwebapp.7qxjh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+
+var db = new Database(dbURI, "chat-webapp");
 
 var messageBlockSize = 10;
 

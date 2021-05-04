@@ -166,7 +166,7 @@ function main(){
     }
 
     refreshLobby();
-    setInterval(refreshLobby, 50000); //periodically refresh the list of chat rooms
+    // setInterval(refreshLobby, 50000); //periodically refresh the list of chat rooms
     renderRoute(); //read the URL from address bar and perform actions
     window.addEventListener('popstate', renderRoute); //popstate event is fired when URL changes (eg: when back button is clicked)
 }
