@@ -1,7 +1,6 @@
 const path = require('path');
 const fs = require('fs');
 const express = require('express');
-const cpen400a = require('./cpen400a-tester.js');
 const WebSocket = require("ws");
 const Database = require('./Database.js');
 
@@ -211,9 +210,6 @@ app.listen(port, () => {
 	db.addConversation(fakeConv).then((result) => console.log(result));
 
 });
-
-cpen400a.connect('http://35.183.65.155/cpen400a/test-a4-server.js');
-cpen400a.export(__filename, { app, db, messages, messageBlockSize });
 
 
 

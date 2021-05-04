@@ -148,12 +148,8 @@ Database.prototype.getLastConversation = function(room_id, before){
 										minDiff.timestamp = res.timestamp;
 										minDiff.id = res._id;
 									}
-								
 							}
-							
 						});
-
-						
 
 						result.forEach((res) => {
 							if((res._id == minDiff.id)){

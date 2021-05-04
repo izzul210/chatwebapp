@@ -10,7 +10,8 @@ var profile = {
 var Service = {
         origin: window.location.origin, //store URL of the server as a string
 
-        /*getAllRooms: fetch the list of rooms, then render it in the view dynamically
+        /*
+        getAllRooms: fetch the list of rooms, then render it in the view dynamically
         - asynchronous function (returned list will be available as the 1st argument in callback pass to)
         */
         getAllRooms: () => {   
@@ -30,7 +31,6 @@ var Service = {
                     else if(xhr.status >= 500){
                         reject(new Error(error.target.response));
                     }
-                    
                 }
 
                 xhr.onerror = (error) => {
@@ -42,7 +42,6 @@ var Service = {
                 }
 
                 xhr.send();
-        
             });
         },
         addRoom: (data) => {
@@ -118,7 +117,7 @@ function main(){
     socket = new WebSocket('ws://localhost:8000');
     socket.addEventListener('message', (event) => {
         //{"roomId", "username", "text"}
-        var msgRoom = JSON.parse(event.data); 
+        var msgRoom = JSON.parse(event.data); //data = roomId, username, text
         console.log('FROM SERVER:')
         console.log(msgRoom);
 
@@ -170,8 +169,6 @@ function main(){
     setInterval(refreshLobby, 50000); //periodically refresh the list of chat rooms
     renderRoute(); //read the URL from address bar and perform actions
     window.addEventListener('popstate', renderRoute); //popstate event is fired when URL changes (eg: when back button is clicked)
-
-    cpen400a.export(arguments.callee, { refreshLobby, lobby, socket, chatView });
 }
 
 
@@ -336,6 +333,8 @@ class ChatView{
             text: input
         }
         this.socket.send(JSON.stringify(msgInfo));
+        console.log('This is in sendMessage:');
+        console.log(msgInfo);
     }
 
     setRoom(room){
