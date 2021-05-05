@@ -7,7 +7,7 @@ const Database = require('./Database.js');
 var broker = new WebSocket.Server({ port: 8000});
 
 // connect to mongodb
-const dbURI = 'mongodb+srv://izzul_chat:secret123@chatwebapp.7qxjh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const dbURI = 'mongodb+srv://izzul_chat:test123@chatwebapp.7qxjh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 
 var db = new Database(dbURI, "chat-webapp");
 
@@ -64,12 +64,18 @@ broker.on('connection', (ws, client) => {
 		var msgInfo = JSON.parse(data);
 		var msgRoomId;
 
+		console.log('Inside ws.on(message): JSON.parse(data)');
+		console.log(msgInfo);
+
 		msgRoomId = msgInfo.roomId;
 		
 		messages[msgRoomId].push({
 			username: msgInfo.username,
 			text: msgInfo.text
 		});
+
+		console.log('messages:');
+		console.log(messages);
 
 		//If array is full, create a new conversation
 		if(messages[msgRoomId].length == messageBlockSize){
@@ -87,8 +93,6 @@ broker.on('connection', (ws, client) => {
 			messages[msgRoomId] = [];
 		}
 		
-
-		console.log('CLIENT detected!'); 
 		broker.clients.forEach((client) => {
 			if(client !== ws && client.readyState === WebSocket.OPEN){
 				client.send(data);
@@ -107,8 +111,6 @@ function logRequest(req, res, next){
 const host = 'localhost';
 const port = 3000;
 const clientApp = path.join(__dirname, 'client');
-
-
 
 
 // express app
@@ -132,6 +134,8 @@ app.route('/chat')
 					"messages": messages[room._id]
 				});
 			});
+			console.log('Inside GET request for rooms. Consists of rooms info and messages');
+			console.log(returnRoom);
 			res.status(200).send(JSON.stringify(returnRoom));
 		}, 
 		(error) => console.log(error));
@@ -149,8 +153,8 @@ app.route('/chat')
 			}
 			console.log('Inside POST for addRoom:');
 			db.addRoom(newRoom).then((res) => {
-				// console.log('Res from db.addRoom:');
-				// console.log(res);
+				console.log('Res from db.addRoom:');
+				console.log(res);
 			});
 
 			messages[newRoom._id] = [];
@@ -163,8 +167,8 @@ app.route('/chat/:room_id')
 		var room_id = req.params.room_id;
 
 		db.getRoom(room_id).then((room) => {
-			// console.log('getRoom from database:');
-			// console.log(room);
+			console.log('getRoom from database:');
+			console.log(room);
 			if(room != undefined){
 				res.status(200).send(room);
 			} else{
@@ -201,16 +205,16 @@ app.route('/chat/:room_id/messages')
 app.listen(port, () => {
 	console.log(`${new Date()}  App Started. Listening on ${host}:${port}, serving ${clientApp}`);
 	
-	var fakeConv = {
-		room_id: 'room-5',
-		timestamp: Date.now(),
-		messages: [{
-			username: 'Sofia',
-			text: 'hello'
-		}]
-	}
+	// var fakeConv = {
+	// 	room_id: 'room-5',
+	// 	timestamp: Date.now(),
+	// 	messages: [{
+	// 		username: 'Sofia',
+	// 		text: 'hello'
+	// 	}]
+	// }
 
-	db.addConversation(fakeConv).then((result) => console.log(result));
+	// db.addConversation(fakeConv).then((result) => console.log(result));
 
 });
 

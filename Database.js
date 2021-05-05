@@ -1,8 +1,5 @@
 const { MongoClient, ObjectID } = require('mongodb');	// require the mongodb driver
 
-/**
- * Uses mongodb v3.6+ - [API Documentation](http://mongodb.github.io/node-mongodb-native/3.6/api/)
- */
 function Database(mongoUrl, dbName){
 	if (!(this instanceof Database)) return new Database(mongoUrl, dbName);
 	this.connected = new Promise((resolve, reject) => {
@@ -35,7 +32,6 @@ Database.prototype.getRooms = function(){
 			db.collection("chatrooms").find({}).toArray()
 				.then((result) => {
 					resolve(result);
-					console.log(result);
 				})
 				.catch((error) => {
 					reject(error);
@@ -74,11 +70,10 @@ Database.prototype.getRoom = function(room_id){
 					  resolve(res);
 					  
 				  })
-
 				resolve(null);
 			  })
 			  .catch(() => {
-				  resolve(null);
+				resolve(null);
 			  })
 
 		})
@@ -97,6 +92,7 @@ Database.prototype.addRoom = function(room){
 				db.collection("chatrooms").find({"name": room.name}).toArray()
 					.then((result) => {
 						resolve(result[0]);
+						console.log(`Room: ${result[0].name} is created and saved in Database!`);
 					})
 					.catch((err) => {
 						reject(err);
